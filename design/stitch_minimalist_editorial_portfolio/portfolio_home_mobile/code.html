@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>John Doe | Product Engineer</title>
+<!-- Google Fonts: Inter for headings/body, JetBrains Mono for labels -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "tertiary": "#000000",
+                    "secondary-fixed-dim": "#c7c6c6",
+                    "outline-variant": "#cfc4c5",
+                    "on-primary-fixed-variant": "#474747",
+                    "surface-container-low": "#f3f3f3",
+                    "on-surface": "#1b1b1b",
+                    "tertiary-fixed-dim": "#c6c6c6",
+                    "secondary": "#5e5e5e",
+                    "surface-tint": "#5e5e5e",
+                    "inverse-surface": "#303030",
+                    "on-tertiary-container": "#848484",
+                    "error-container": "#ffdad6",
+                    "surface-container": "#eeeeee",
+                    "error": "#ba1a1a",
+                    "on-error-container": "#93000a",
+                    "primary": "#000000",
+                    "on-tertiary-fixed": "#1b1b1b",
+                    "surface": "#f9f9f9",
+                    "on-secondary": "#ffffff",
+                    "surface-dim": "#dadada",
+                    "on-tertiary-fixed-variant": "#474747",
+                    "surface-container-lowest": "#ffffff",
+                    "on-secondary-fixed-variant": "#464747",
+                    "inverse-on-surface": "#f1f1f1",
+                    "on-secondary-container": "#646464",
+                    "secondary-fixed": "#e3e2e2",
+                    "outline": "#7e7576",
+                    "on-primary-fixed": "#1b1b1b",
+                    "surface-variant": "#e2e2e2",
+                    "tertiary-container": "#1b1b1b",
+                    "on-tertiary": "#ffffff",
+                    "tertiary-fixed": "#e2e2e2",
+                    "surface-bright": "#f9f9f9",
+                    "on-background": "#1b1b1b",
+                    "primary-container": "#1b1b1b",
+                    "surface-container-highest": "#e2e2e2",
+                    "primary-fixed": "#e2e2e2",
+                    "on-error": "#ffffff",
+                    "secondary-container": "#e3e2e2",
+                    "on-primary": "#ffffff",
+                    "on-secondary-fixed": "#1b1c1c",
+                    "inverse-primary": "#c6c6c6",
+                    "surface-container-high": "#e8e8e8",
+                    "on-surface-variant": "#4c4546",
+                    "primary-fixed-dim": "#c6c6c6",
+                    "on-primary-container": "#848484",
+                    "background": "#f9f9f9"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "gutter": "24px",
+                    "element-gap": "32px",
+                    "container-max": "1100px",
+                    "unit": "8px",
+                    "section-gap": "120px",
+                    "margin-mobile": "16px"
+            },
+            "fontFamily": {
+                    "body-sm": ["Inter"],
+                    "headline-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "label-mono": ["JetBrains Mono"],
+                    "headline-lg-mobile": ["Inter"],
+                    "display-xl": ["Inter"]
+            },
+            "fontSize": {
+                    "body-sm": ["14px", {"lineHeight": "1.5", "fontWeight": "400"}],
+                    "headline-lg": ["48px", {"lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "body-md": ["16px", {"lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400"}],
+                    "label-mono": ["12px", {"lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500"}],
+                    "headline-lg-mobile": ["32px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                    "display-xl": ["72px", {"lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800"}]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            background-color: #f4f4f4; /* Requested base background */
+            -webkit-font-smoothing: antialiased;
+        }
+        .editorial-divider {
+            border-top: 1px solid theme('colors.outline-variant');
+        }
+        .material-symbols-outlined {
+            font-size: 1.25rem;
+            vertical-align: middle;
+        }
+        .project-card:hover .project-image {
+            filter: grayscale(0);
+        }
+        .project-image {
+            filter: grayscale(100%);
+            transition: filter 0.4s ease;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="text-on-surface font-body-md selection:bg-primary-fixed selection:text-primary">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-surface border-b border-outline-variant">
+<div class="max-w-container-max mx-auto px-gutter flex items-center justify-between h-16">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full overflow-hidden bg-surface-container-highest">
+<img class="w-full h-full object-cover" data-alt="A professional, minimalist headshot of a developer in a high-key lighting environment with a clean white background. The subject is wearing a simple black t-shirt, looking directly at the camera with a neutral, professional expression. The aesthetic is monochromatic and editorial, matching the sophisticated, architectural portfolio style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB64S7wECZ3uXE7mnBjWdp_mHaxA8g9ezABuobPPm11DhOVxfqyLByQcFGEsEYvRLlEchj0wzqGeV2pzxpcApUdN_SOavG6mZU4tcCZiTE9kQy12wwi2lEwVU7kZf_JdZPn1zLhFb23yPQgEBj_06jd_A-uTkjI4V9pX45_9mmmTRsthmjiMviZyJgrbEj2WMK5MB2FsE3OOoQQRh58M39WNy0-yL060opvr-au5FwRov_1wZGLAx7bpIVQArF3i0DMyTgwV2L0Hkvy"/>
+</div>
+<span class="font-headline-lg-mobile md:font-bold text-tertiary">username.dev</span>
+</div>
+<nav class="hidden md:flex gap-8 items-center">
+<a class="text-primary font-bold border-b-2 border-primary cursor-pointer active:opacity-70 transition-colors duration-200" href="#">Works</a>
+<a class="text-secondary hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Notes</a>
+<a class="text-secondary hover:text-primary transition-colors duration-200 cursor-pointer" href="#">Tags</a>
+<span class="material-symbols-outlined text-primary cursor-pointer">dark_mode</span>
+</nav>
+<div class="md:hidden">
+<span class="material-symbols-outlined">menu</span>
+</div>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter">
+<!-- Hero Section -->
+<section class="pt-24 pb-section-gap">
+<div class="max-w-3xl">
+<h1 class="font-display-xl text-display-xl mb-4 text-primary leading-tight">
+                    John Doe (ジョン・ドゥ)
+                </h1>
+<p class="font-headline-lg-mobile text-headline-lg-mobile text-secondary mb-2">
+                    Product Engineer / DevOps Enthusiast
+                </p>
+<p class="font-label-mono text-label-mono text-secondary mb-8 uppercase tracking-widest">
+                    Jakarta, Indonesia
+                </p>
+<div class="editorial-divider w-12 mb-8"></div>
+<p class="text-body-md text-on-surface-variant max-w-2xl mb-10 leading-relaxed">
+                    Building scalable, resilient systems with a focus on simplicity and architectural integrity. I specialize in bridge-building between complex backend infrastructure and elegant, minimalist user interfaces. Currently exploring the intersection of developer productivity and high-performance Rust-based tooling.
+                </p>
+<div class="flex gap-6">
+<a class="font-label-mono text-label-mono uppercase border-b border-primary pb-1 hover:opacity-60 transition-opacity flex items-center gap-1" href="#">
+                        LinkedIn <span class="material-symbols-outlined !text-[14px]">north_east</span>
+</a>
+<a class="font-label-mono text-label-mono uppercase border-b border-primary pb-1 hover:opacity-60 transition-opacity flex items-center gap-1" href="#">
+                        GitHub <span class="material-symbols-outlined !text-[14px]">north_east</span>
+</a>
+<a class="font-label-mono text-label-mono uppercase border-b border-primary pb-1 hover:opacity-60 transition-opacity flex items-center gap-1" href="#">
+                        GitLab <span class="material-symbols-outlined !text-[14px]">north_east</span>
+</a>
+</div>
+</div>
+</section>
+<!-- Experience Section -->
+<section class="py-section-gap editorial-divider">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+<div class="md:col-span-4">
+<h2 class="font-label-mono text-label-mono uppercase tracking-widest text-secondary">Experience</h2>
+</div>
+<div class="md:col-span-8 flex flex-col gap-12">
+<!-- Item 1 -->
+<div class="group">
+<div class="flex justify-between items-baseline mb-2">
+<h3 class="font-bold text-headline-lg-mobile">TechCorp</h3>
+<span class="font-label-mono text-label-mono text-secondary">2022 — Present</span>
+</div>
+<p class="text-secondary mb-4 italic">Senior Frontend Engineer</p>
+<ul class="space-y-3">
+<li class="flex items-start gap-4">
+<span class="w-1.5 h-1.5 bg-primary mt-2 flex-shrink-0"></span>
+<p class="text-body-md text-on-surface-variant">Architected and maintained the core enterprise UI library used by 50+ internal teams.</p>
+</li>
+<li class="flex items-start gap-4">
+<span class="w-1.5 h-1.5 bg-primary mt-2 flex-shrink-0"></span>
+<p class="text-body-md text-on-surface-variant">Optimized CI/CD pipelines reducing build times by 45% through aggressive caching and monorepo management.</p>
+</li>
+</ul>
+</div>
+<!-- Item 2 -->
+<div class="group">
+<div class="flex justify-between items-baseline mb-2">
+<h3 class="font-bold text-headline-lg-mobile">DevStudio</h3>
+<span class="font-label-mono text-label-mono text-secondary">2020 — 2022</span>
+</div>
+<p class="text-secondary mb-4 italic">Fullstack Developer</p>
+<ul class="space-y-3">
+<li class="flex items-start gap-4">
+<span class="w-1.5 h-1.5 bg-primary mt-2 flex-shrink-0"></span>
+<p class="text-body-md text-on-surface-variant">Developed real-time client-facing dashboards for large-scale logistics monitoring.</p>
+</li>
+<li class="flex items-start gap-4">
+<span class="w-1.5 h-1.5 bg-primary mt-2 flex-shrink-0"></span>
+<p class="text-body-md text-on-surface-variant">Successfully migrated legacy PHP APIs to a modern Node.js microservices architecture.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Works -->
+<section class="py-section-gap editorial-divider">
+<div class="mb-16">
+<h2 class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-4">Featured Works</h2>
+<div class="editorial-divider w-12"></div>
+</div>
+<div class="grid grid-cols-1 gap-16">
+<!-- Project 1 -->
+<article class="group cursor-pointer">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-7 bg-surface-container overflow-hidden">
+<img class="w-full aspect-video object-cover project-image scale-100 group-hover:scale-105 transition-transform duration-700" data-alt="A high-contrast, minimalist digital mockup of a cloud infrastructure dashboard. The UI is displayed on a clean matte screen in a dark studio setting. The dashboard features monochrome graphs, thin hairlines, and precise data visualizations. The lighting is focused, casting soft shadows and highlighting the clean, technical aesthetic of the interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsDnV_1l3oXRa7XL7elNFcIgXiybFd2mm2szePKRfZ8pJxQ4sixCHK1aTgfqNTwyc1dGnKWYNPS9AmOfcXxgFUPCLWcCykndejXw4FdePMWmGWJtHnhmdqozXRsYshiDPhz2tUzPSd6Wk-yI7h7bIqqMgU2tJI0BQ4P9sRZ6-hgKq6vLNpLGZsigYRsuSGENvkFbC_VQVxFGzbkXg3fK87ICTwOa_AWWjQ25CGPzOuS1qtCmM1dGNEWK6dyJX_mTvoaY0eK_L8pLOa"/>
+</div>
+<div class="md:col-span-5">
+<div class="flex gap-2 mb-4">
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#nextjs</span>
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#k8s</span>
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#terraform</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Project Alpha</h3>
+<p class="text-on-surface-variant mb-6">A mission-critical cloud infrastructure dashboard designed for massive scale. Real-time observability meet minimalist aesthetic.</p>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Project 2 -->
+<article class="group cursor-pointer">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<div class="md:col-span-7 md:order-2 bg-surface-container overflow-hidden">
+<img class="w-full aspect-video object-cover project-image scale-100 group-hover:scale-105 transition-transform duration-700" data-alt="A minimalist mobile application interface for a note-taking tool. The screen shows a pure white background with elegant serif typography and significant negative space. The device is placed on a smooth, gray concrete surface with a single geometric shadow falling across it. The overall mood is calm, professional, and sophisticated." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5H8APZXiF1djComYkRWorcyCsDVpMzbMyqdC1eEq__N5FJ-8buLtUXaV5IW07b7V7mq-F2z0iKHP46cjogm7NwLQqEiz-T8Veh46BuwT1LKnYSfjGmXOck28th9FmrLhQRd5lLBW6UE9J2jzlECCLDVAzhsWj5p0fvL2RVhHkZ5uJtlM85JHovBbutvvxh3UxYsjXkVD7Cv2QinXextk8BKBVSvAYhoPLqPCJud3q1O6nQIcNcSz99_nRHCopQ2Vy-C1yGxC4kg0y"/>
+</div>
+<div class="md:col-span-5 md:order-1 text-right md:text-left">
+<div class="flex gap-2 mb-4 justify-end md:justify-start">
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#typescript</span>
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#react</span>
+</div>
+<h3 class="font-headline-lg text-headline-lg mb-2">Beta App</h3>
+<p class="text-on-surface-variant mb-6">Distraction-free note taking. Focusing on the content through extreme reduction of UI elements and focus on typography.</p>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+</article>
+<!-- Grid for smaller cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- Card 3 -->
+<div class="border border-outline-variant p-8 hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex gap-2 mb-6">
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#rust</span>
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#wasm</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Gamma Engine</h3>
+<p class="text-on-surface-variant mb-8">High-performance data processing engine compiled to WebAssembly for edge computing.</p>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+<!-- Card 4 -->
+<div class="border border-outline-variant p-8 hover:bg-surface-container transition-colors group cursor-pointer">
+<div class="flex gap-2 mb-6">
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#tailwind</span>
+<span class="px-2 py-1 border border-outline font-label-mono text-label-mono uppercase">#storybook</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile mb-2">Delta UI</h3>
+<p class="text-on-surface-variant mb-8">An accessible, accessible-first component library built for rapid internal tool development.</p>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-2 transition-transform">arrow_forward</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Latest Notes -->
+<section class="py-section-gap editorial-divider">
+<div class="mb-12 flex justify-between items-end">
+<div>
+<h2 class="font-label-mono text-label-mono uppercase tracking-widest text-secondary mb-4">Latest Notes</h2>
+<div class="editorial-divider w-12"></div>
+</div>
+<a class="font-label-mono text-label-mono uppercase underline hover:text-primary transition-colors" href="#">View All</a>
+</div>
+<div class="grid grid-cols-1 gap-1">
+<!-- Note 1 -->
+<a class="group py-8 editorial-divider flex flex-col md:flex-row md:items-center justify-between hover:bg-surface-container-low px-4 transition-colors" href="#">
+<div class="flex flex-col gap-1 mb-4 md:mb-0">
+<span class="font-label-mono text-label-mono text-secondary mb-2">July 10, 2026</span>
+<h4 class="font-bold text-headline-lg-mobile group-hover:text-primary transition-colors">Scaling with K8s: Lessons from the trenches</h4>
+<p class="text-secondary text-body-sm">Deep dive into cluster optimization and cost management.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">Infrastructure</span>
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">Scale</span>
+</div>
+</a>
+<!-- Note 2 -->
+<a class="group py-8 editorial-divider flex flex-col md:flex-row md:items-center justify-between hover:bg-surface-container-low px-4 transition-colors" href="#">
+<div class="flex flex-col gap-1 mb-4 md:mb-0">
+<span class="font-label-mono text-label-mono text-secondary mb-2">June 24, 2026</span>
+<h4 class="font-bold text-headline-lg-mobile group-hover:text-primary transition-colors">Minimalist CSS: The power of restraint</h4>
+<p class="text-secondary text-body-sm">Why less code usually means better performance and UX.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">Design</span>
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">CSS</span>
+</div>
+</a>
+<!-- Note 3 -->
+<a class="group py-8 editorial-divider flex flex-col md:flex-row md:items-center justify-between hover:bg-surface-container-low px-4 transition-colors" href="#">
+<div class="flex flex-col gap-1 mb-4 md:mb-0">
+<span class="font-label-mono text-label-mono text-secondary mb-2">May 15, 2026</span>
+<h4 class="font-bold text-headline-lg-mobile group-hover:text-primary transition-colors">Developer Productivity: Tooling as a lever</h4>
+<p class="text-secondary text-body-sm">Measuring impact beyond simple lines of code.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">Productivity</span>
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">Tools</span>
+</div>
+</a>
+<!-- Note 4 -->
+<a class="group py-8 editorial-divider flex flex-col md:flex-row md:items-center justify-between hover:bg-surface-container-low px-4 transition-colors border-b" href="#">
+<div class="flex flex-col gap-1 mb-4 md:mb-0">
+<span class="font-label-mono text-label-mono text-secondary mb-2">April 02, 2026</span>
+<h4 class="font-bold text-headline-lg-mobile group-hover:text-primary transition-colors">Rust in Production: A pragmatic guide</h4>
+<p class="text-secondary text-body-sm">Adopting memory-safe languages in legacy environments.</p>
+</div>
+<div class="flex gap-2">
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">Rust</span>
+<span class="px-2 py-1 bg-surface-container-highest text-secondary font-label-mono text-[10px] uppercase">Backend</span>
+</div>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap bg-surface border-t border-outline-variant">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="font-label-mono text-label-mono uppercase text-primary">© 2024 username.dev</span>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="font-label-mono text-label-mono uppercase text-secondary hover:underline transition-all" href="#">Works</a>
+<a class="font-label-mono text-label-mono uppercase text-secondary hover:underline transition-all" href="#">Notes</a>
+<a class="font-label-mono text-label-mono uppercase text-secondary hover:underline transition-all" href="#">Tags</a>
+<a class="font-label-mono text-label-mono uppercase text-secondary hover:underline transition-all" href="#">Photos</a>
+<a class="font-label-mono text-label-mono uppercase text-secondary hover:underline transition-all" href="#">Guestbook</a>
+</div>
+</div>
+</footer>
+<script>
+        // Micro-interaction: Subtle parallax on hero text
+        document.addEventListener('mousemove', (e) => {
+            const h1 = document.querySelector('h1');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            h1.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        });
+
+        // Intersection Observer for fade-in effect on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'all 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            observer.observe(section);
+        });
+    </script>
+</body></html>

@@ -1,0 +1,298 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>John Doe - Product Engineer</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#c6c6c6",
+                        "tertiary": "#000000",
+                        "surface": "#f9f9f9",
+                        "outline": "#7e7576",
+                        "inverse-on-surface": "#f1f1f1",
+                        "inverse-surface": "#303030",
+                        "background": "#f9f9f9",
+                        "primary-container": "#1b1b1b",
+                        "primary": "#000000",
+                        "on-primary-fixed-variant": "#474747",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eeeeee",
+                        "primary-fixed-dim": "#c6c6c6",
+                        "on-tertiary-container": "#848484",
+                        "secondary-fixed": "#e3e2e2",
+                        "on-secondary-fixed": "#1b1c1c",
+                        "on-primary-fixed": "#1b1b1b",
+                        "on-primary-container": "#848484",
+                        "on-secondary-fixed-variant": "#464747",
+                        "inverse-primary": "#c6c6c6",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f9f9f9",
+                        "on-surface": "#1b1b1b",
+                        "secondary-container": "#e3e2e2",
+                        "primary-fixed": "#e2e2e2",
+                        "on-tertiary-fixed": "#1b1b1b",
+                        "tertiary-container": "#1b1b1b",
+                        "secondary": "#5e5e5e",
+                        "error-container": "#ffdad6",
+                        "surface-container-low": "#f3f3f3",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-surface-variant": "#4c4546",
+                        "surface-variant": "#e2e2e2",
+                        "surface-tint": "#5e5e5e",
+                        "surface-container-high": "#e8e8e8",
+                        "on-tertiary-fixed-variant": "#474747",
+                        "surface-dim": "#dadada",
+                        "secondary-fixed-dim": "#c7c6c6",
+                        "on-background": "#1b1b1b",
+                        "tertiary-fixed": "#e2e2e2",
+                        "on-secondary-container": "#646464",
+                        "outline-variant": "#cfc4c5",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-highest": "#e2e2e2",
+                        "on-primary": "#ffffff",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "unit": "8px",
+                        "section-gap": "120px",
+                        "margin-mobile": "16px",
+                        "container-max": "1100px",
+                        "element-gap": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Inter"],
+                        "headline-lg-mobile": ["Inter"],
+                        "display-xl": ["Inter"],
+                        "label-mono": ["JetBrains Mono"],
+                        "body-sm": ["Inter"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["48px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-lg-mobile": ["32px", { "lineHeight": "1.2", "fontWeight": "700" }],
+                        "display-xl": ["72px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "label-mono": ["12px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-sm": ["14px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "1.6", "letterSpacing": "0em", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.surface');
+            color: theme('colors.on-surface');
+        }
+    </style>
+</head>
+<body class="antialiased font-body-md text-body-md selection:bg-primary-container selection:text-on-primary-container">
+<!-- TopAppBar -->
+<header class="sticky top-0 w-full z-50 bg-surface dark:bg-surface-dim border-b border-outline-variant dark:border-outline flat no shadows">
+<div class="max-w-container-max mx-auto px-gutter flex items-center justify-between h-16">
+<div class="flex items-center gap-4">
+<!-- Assuming no image provided for avatar, leaving structural place -->
+<a class="font-headline-lg-mobile text-headline-lg-mobile font-bold text-tertiary dark:text-tertiary-fixed cursor-pointer active:opacity-70" href="#">
+                    username.dev
+                </a>
+</div>
+<!-- Desktop Nav Links -->
+<nav class="hidden md:flex items-center gap-6 font-body-md text-body-md">
+<!-- Assuming Home/Main intent, no direct match in JSON links, so no active state applied to these specific links based on rules -->
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Works</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Notes</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Tags</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Photos</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200" href="#">Guestbook</a>
+</nav>
+<button class="text-primary dark:text-primary-fixed font-body-md text-body-md cursor-pointer active:opacity-70 hover:text-primary dark:hover:text-primary-fixed transition-colors duration-200 p-2 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined">dark_mode</span>
+</button>
+</div>
+</header>
+<main class="max-w-container-max mx-auto px-gutter py-section-gap">
+<!-- Hero Section -->
+<section class="mb-section-gap flex flex-col md:flex-row gap-element-gap items-start md:items-center">
+<div class="flex-1 space-y-6">
+<h1 class="font-display-xl text-display-xl text-primary">
+                    John Doe <span class="text-secondary block md:inline md:ml-4 font-headline-lg text-headline-lg">(ジョン・ドゥ)</span>
+</h1>
+<div class="space-y-2">
+<p class="font-body-md text-body-md text-secondary">Product Engineer / DevOps Enthusiast</p>
+<p class="font-label-mono text-label-mono text-outline flex items-center gap-2 uppercase">
+<span class="material-symbols-outlined" style="font-size: 16px;">location_on</span>
+                        Jakarta, Indonesia
+                    </p>
+</div>
+<p class="font-body-md text-body-md text-on-surface max-w-2xl leading-relaxed">
+                    I build robust, scalable infrastructure and user-centric products. Passionate about automating the mundane and architecting systems that stand the test of time, with a keen eye for minimalist design principles.
+                </p>
+<div class="flex gap-4 pt-4">
+<a class="group flex items-center gap-1 font-label-mono text-label-mono uppercase text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors" href="#">
+                        LinkedIn <span class="material-symbols-outlined text-[14px] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
+</a>
+<a class="group flex items-center gap-1 font-label-mono text-label-mono uppercase text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors" href="#">
+                        GitHub <span class="material-symbols-outlined text-[14px] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
+</a>
+<a class="group flex items-center gap-1 font-label-mono text-label-mono uppercase text-primary border-b border-primary pb-1 hover:text-secondary hover:border-secondary transition-colors" href="#">
+                        GitLab <span class="material-symbols-outlined text-[14px] transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">arrow_outward</span>
+</a>
+</div>
+</div>
+<!-- Optional subtle graphic or empty space -->
+<div class="hidden md:block w-1/3">
+<!-- Aesthetic empty space balancing the layout -->
+</div>
+</section>
+<hr class="border-t border-outline-variant w-full my-section-gap">
+<!-- Experience Section -->
+<section class="mb-section-gap">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-element-gap">Experience</h2>
+<div class="space-y-element-gap">
+<!-- Job 1 -->
+<div class="rounded-DEFAULT transition-colors group">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-4 border-b border-outline-variant pb-2">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">Senior Product Engineer <span class="text-secondary text-body-md font-body-md block md:inline md:ml-2">@ TechCorp</span></h3>
+<span class="font-label-mono text-label-mono text-outline uppercase mt-2 md:mt-0">2021 — Present</span>
+</div>
+<ul class="list-none space-y-2 font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-1" style="font-size: 16px;">arrow_right</span>
+                            Led the architectural redesign of the core microservices, improving system throughput by 40%.
+                        </li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-1" style="font-size: 16px;">arrow_right</span>
+                            Mentored a team of 5 junior developers, fostering a culture of continuous deployment and rigorous testing.
+                        </li>
+</ul>
+</div>
+<!-- Job 2 -->
+<div class="rounded-DEFAULT transition-colors group">
+<div class="flex flex-col md:flex-row justify-between items-baseline mb-4 border-b border-outline-variant pb-2">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary">DevOps Specialist <span class="text-secondary text-body-md font-body-md block md:inline md:ml-2">@ StartUp Inc</span></h3>
+<span class="font-label-mono text-label-mono text-outline uppercase mt-2 md:mt-0">2018 — 2021</span>
+</div>
+<ul class="list-none space-y-2 font-body-md text-body-md text-on-surface-variant">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-1" style="font-size: 16px;">arrow_right</span>
+                            Implemented automated CI/CD pipelines reducing deployment times from hours to minutes.
+                        </li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-outline mt-1" style="font-size: 16px;">arrow_right</span>
+                            Managed cloud infrastructure across AWS and GCP, optimizing costs by 25% annually.
+                        </li>
+</ul>
+</div>
+</div>
+</section>
+<hr class="border-t border-outline-variant w-full my-section-gap">
+<!-- Featured Works Section -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-element-gap">
+<h2 class="font-headline-lg text-headline-lg text-primary">Selected Works</h2>
+<a class="hidden md:flex items-center gap-1 font-label-mono text-label-mono uppercase text-secondary hover:text-primary transition-colors" href="#">
+                    View All Works <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-element-gap">
+<!-- Project 1 -->
+<article class="group border border-outline-variant rounded-DEFAULT overflow-hidden transition-colors cursor-pointer flex flex-col h-full">
+<div class="w-full h-64 border-b border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="A clean, minimalist high-fidelity UI mockup of a cloud infrastructure dashboard shown on a sleek monitor. The interface features stark white backgrounds with crisp black typography and thin grey structural lines. A subtle glowing neon blue accent highlights an active data stream, contrasting with the monochromatic editorial style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbiZfXqM5DNTTDfTBSEPAlcaCeXQY9aIVtyOSsJvYguCTokfHHgtiisulJT2vZZ_JKdnySMp353Sa79KONl6cylU7626l3JR0k8nLCo1q1lA_QTrihJmADXJuBZdgNl8KMwHJQidxMWNCkYCVQjSd-ag5QmEZ17dhWF-X5DZoVOO_Mh0MEtfJe-CHCGCHWZgHlBqqYpI09KxH8_hqPE4Aqaq6I9F2qz3rwOJILTVxgimZqzexrj4UGiTYhVBIdu8v3WLsfus9Cg1cx">
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex gap-2 mb-4 flex-wrap">
+<span class="border border-outline-variant px-2 py-1 rounded-DEFAULT font-label-mono text-label-mono uppercase text-secondary">Cloud</span>
+<span class="border border-outline-variant px-2 py-1 rounded-DEFAULT font-label-mono text-label-mono uppercase text-secondary">Dashboard</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">Nexus Infrastructure Monitor</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-1">
+                            A real-time observability platform designed to visualize complex distributed systems with stark clarity and minimal cognitive load.
+                        </p>
+</div>
+</article>
+<!-- Project 2 -->
+<article class="group border border-outline-variant rounded-DEFAULT overflow-hidden transition-colors cursor-pointer flex flex-col h-full">
+<div class="w-full h-64 border-b border-outline-variant overflow-hidden">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated digital editorial layout displayed on a tablet device. The design showcases extensive use of whitespace, dramatic high-contrast typography in black and white, and precise alignment. The aesthetic is extremely clean and architectural, devoid of rounded corners or soft shadows, emphasizing structure and legibility." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCVmj9iBE772BSJvA_qudzpbRmOXnZ7HxUnyl1vabEYa7Cj8KiytWInHgjq3u-dMs7RtDdGdiqX5f8eHdwndvMgFOyPu30adUSc1GoM6_dh9JyaJxQVCrEOLbnBLTZbha6T0uFYt9UQyz5rujQn9tc_tvi4ts6LLaEJbhAaNlOAz-ed2IZVQ5VPqbFjntQb0LqVo4T_3EM22_mm7I8E0EaQTWlxtMF8etHN9USiLAKXAw5-gQych0WEI3lAYMIyQ6NT-qWEvyyRW_C">
+</div>
+<div class="p-6 flex-1 flex flex-col">
+<div class="flex gap-2 mb-4 flex-wrap">
+<span class="border border-outline-variant px-2 py-1 rounded-DEFAULT font-label-mono text-label-mono uppercase text-secondary">Web</span>
+<span class="border border-outline-variant px-2 py-1 rounded-DEFAULT font-label-mono text-label-mono uppercase text-secondary">Editorial</span>
+</div>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2">Typeface Journal</h3>
+<p class="font-body-md text-body-md text-on-surface-variant flex-1">
+                            An experimental publishing platform focusing entirely on typography and long-form technical reading experiences.
+                        </p>
+</div>
+</article>
+</div>
+<a class="md:hidden flex items-center justify-center gap-1 mt-8 font-label-mono text-label-mono uppercase text-secondary hover:text-primary transition-colors border border-outline-variant py-3 rounded-DEFAULT w-full" href="#">
+                View All Works <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+</a>
+</section>
+<hr class="border-t border-outline-variant w-full my-section-gap">
+<!-- Latest Notes Section -->
+<section class="mb-section-gap">
+<div class="flex justify-between items-end mb-element-gap">
+<h2 class="font-headline-lg text-headline-lg text-primary">Latest Notes</h2>
+<a class="hidden md:flex items-center gap-1 font-label-mono text-label-mono uppercase text-secondary hover:text-primary transition-colors" href="#">
+                    View All Notes <span class="material-symbols-outlined" style="font-size: 16px;">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-element-gap">
+<!-- Note 1 -->
+<a class="group block border-b border-outline-variant pb-6 hover:bg-surface-container-lowest transition-colors p-4 -mx-4 rounded-DEFAULT" href="#">
+<time class="font-label-mono text-label-mono text-outline uppercase block mb-3">October 12, 2024</time>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2 group-hover:underline decoration-1 underline-offset-4">Embracing Monolithic Designs in a Microservices Era</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        Exploring the counter-intuitive benefits of scaling up monolithic architectures before prematurely breaking them down.
+                    </p>
+</a>
+<!-- Note 2 -->
+<a class="group block border-b border-outline-variant pb-6 hover:bg-surface-container-lowest transition-colors p-4 -mx-4 rounded-DEFAULT" href="#">
+<time class="font-label-mono text-label-mono text-outline uppercase block mb-3">September 28, 2024</time>
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-primary mb-2 group-hover:underline decoration-1 underline-offset-4">The Case for CSS Grid in Structural Typography</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">
+                        How leveraging native CSS Grid can lead to more predictable, editorial-quality web layouts without heavy frameworks.
+                    </p>
+</a>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-gap border-t border-outline-variant dark:border-outline flat no shadows bg-surface dark:bg-surface-dim transition-opacity duration-200">
+<div class="max-w-container-max mx-auto px-gutter flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-mono text-label-mono uppercase text-secondary dark:text-secondary-fixed-dim">
+                © 2024 username.dev
+            </p>
+<nav class="flex gap-4 flex-wrap justify-center font-label-mono text-label-mono">
+<a class="text-secondary dark:text-secondary-fixed-dim hover:underline transition-all" href="#">Works</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:underline transition-all" href="#">Notes</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:underline transition-all" href="#">Tags</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:underline transition-all" href="#">Photos</a>
+<a class="text-secondary dark:text-secondary-fixed-dim hover:underline transition-all" href="#">Guestbook</a>
+</nav>
+</div>
+</footer>
+
+
+</body></html>

@@ -1,0 +1,182 @@
+/* Minimalist Editorial Portfolio Design System (Stitch Spec)
+ * Refined minimalist aesthetic with high-contrast editorial typography and strict monochromatic palette
+ */
+
+:root {
+  /* Stitch Minimalist Editorial Palette */
+  --color-surface: #f9f9f9;
+  --color-surface-dim: #dadada;
+  --color-surface-bright: #f9f9f9;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f3;
+  --color-surface-container: #eeeeee;
+  --color-surface-container-high: #e8e8e8;
+  --color-surface-container-highest: #e2e2e2;
+
+  --color-on-surface: #1b1b1b;
+  --color-on-surface-variant: #4c4546;
+  --color-outline: #7e7576;
+  --color-outline-variant: #cfc4c5;
+
+  --color-primary: #000000;
+  --color-on-primary: #ffffff;
+  --color-secondary: #5e5e5e;
+  --color-background: #f9f9f9;
+  --color-on-background: #1b1b1b;
+
+  /* Legacy & Token Compatibility */
+  --color-paper: var(--color-surface);
+  --color-paper-2: var(--color-surface-container-low);
+  --color-paper-3: var(--color-surface-container);
+  --color-ink: var(--color-on-surface);
+  --color-ink-2: var(--color-on-surface-variant);
+  --color-muted: var(--color-secondary);
+  --color-rule: var(--color-outline-variant);
+  --color-accent: var(--color-surface-container-high);
+  --color-accent-2: var(--color-primary);
+
+  /* Typography Stack */
+  --font-display: "Inter", "Big Shoulders Display", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Layout & Spacing */
+  --container-max: 1100px;
+  --gutter: 24px;
+  --margin-mobile: 16px;
+  --section-gap: 120px;
+  --element-gap: 32px;
+  --unit: 8px;
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-base: 200ms;
+  --dur-lg: 300ms;
+
+  /* Radius (Soft 0.25rem per Stitch spec) */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+}
+
+/* Dark Mode Manual / Media Override */
+.dark, [data-theme="dark"] {
+  --color-surface: #0f0f0f;
+  --color-surface-dim: #1a1a1a;
+  --color-surface-bright: #1f1f1f;
+  --color-surface-container-lowest: #141414;
+  --color-surface-container-low: #1c1c1c;
+  --color-surface-container: #252525;
+  --color-surface-container-high: #2e2e2e;
+  --color-surface-container-highest: #383838;
+
+  --color-on-surface: #f1f1f1;
+  --color-on-surface-variant: #c4c4c4;
+  --color-outline: #5a5a5a;
+  --color-outline-variant: #333333;
+
+  --color-primary: #ffffff;
+  --color-on-primary: #000000;
+  --color-secondary: #a0a0a0;
+  --color-background: #0f0f0f;
+  --color-on-background: #f1f1f1;
+
+  --color-paper: var(--color-surface);
+  --color-paper-2: var(--color-surface-container-low);
+  --color-paper-3: var(--color-surface-container);
+  --color-ink: var(--color-on-surface);
+  --color-ink-2: var(--color-on-surface-variant);
+  --color-muted: var(--color-secondary);
+  --color-rule: var(--color-outline-variant);
+  --color-accent: var(--color-surface-container-high);
+  --color-accent-2: var(--color-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-surface: #0f0f0f;
+    --color-surface-dim: #1a1a1a;
+    --color-surface-bright: #1f1f1f;
+    --color-surface-container-lowest: #141414;
+    --color-surface-container-low: #1c1c1c;
+    --color-surface-container: #252525;
+    --color-surface-container-high: #2e2e2e;
+    --color-surface-container-highest: #383838;
+
+    --color-on-surface: #f1f1f1;
+    --color-on-surface-variant: #c4c4c4;
+    --color-outline: #5a5a5a;
+    --color-outline-variant: #333333;
+
+    --color-primary: #ffffff;
+    --color-on-primary: #000000;
+    --color-secondary: #a0a0a0;
+    --color-background: #0f0f0f;
+    --color-on-background: #f1f1f1;
+
+    --color-paper: var(--color-surface);
+    --color-paper-2: var(--color-surface-container-low);
+    --color-paper-3: var(--color-surface-container);
+    --color-ink: var(--color-on-surface);
+    --color-ink-2: var(--color-on-surface-variant);
+    --color-muted: var(--color-secondary);
+    --color-rule: var(--color-outline-variant);
+    --color-accent: var(--color-surface-container-high);
+    --color-accent-2: var(--color-primary);
+  }
+}
+
+/* Base Styles */
+body {
+  background-color: var(--color-surface);
+  color: var(--color-on-surface);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Typography Helper Classes */
+.font-display-xl {
+  font-family: var(--font-body);
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+}
+
+.font-headline-lg {
+  font-family: var(--font-body);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.font-headline-mobile {
+  font-family: var(--font-body);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.font-label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* Utility Animations */
+.grayscale-hover {
+  filter: grayscale(100%);
+  transition: filter var(--dur-lg) var(--ease-smooth);
+}
+
+.grayscale-hover:hover {
+  filter: grayscale(0%);
+}

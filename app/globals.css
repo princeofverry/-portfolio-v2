@@ -1,26 +1,134 @@
 @import "tailwindcss";
+@import "../tokens.css";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: var(--color-surface);
+    --foreground: var(--color-on-surface);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-surface);
+    color: var(--color-on-surface);
+    font-family: var(--font-body);
+  }
+
+  ::selection {
+    background-color: var(--color-on-surface);
+    color: var(--color-surface);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Color Tokens Utilities */
+.bg-surface {
+  background-color: var(--color-surface) !important;
+}
+
+.bg-surface-container-lowest {
+  background-color: var(--color-surface-container-lowest) !important;
+}
+
+.bg-surface-container-low {
+  background-color: var(--color-surface-container-low) !important;
+}
+
+.bg-surface-container {
+  background-color: var(--color-surface-container) !important;
+}
+
+.bg-surface-container-high {
+  background-color: var(--color-surface-container-high) !important;
+}
+
+.bg-primary {
+  background-color: var(--color-primary) !important;
+}
+
+.text-primary {
+  color: var(--color-primary) !important;
+}
+
+.text-secondary {
+  color: var(--color-secondary) !important;
+}
+
+.text-on-primary {
+  color: var(--color-on-primary) !important;
+}
+
+.text-on-surface {
+  color: var(--color-on-surface) !important;
+}
+
+.text-on-surface-variant {
+  color: var(--color-on-surface-variant) !important;
+}
+
+/* Custom Spacing & Utility Classes for Stitch Minimalist Editorial */
+.max-w-container-max {
+  max-width: var(--container-max);
+}
+
+.px-gutter {
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+.py-section-gap {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+.mb-section-gap {
+  margin-bottom: var(--section-gap);
+}
+
+.my-section-gap {
+  margin-top: var(--section-gap);
+  margin-bottom: var(--section-gap);
+}
+
+.mb-element-gap {
+  margin-bottom: var(--element-gap);
+}
+
+.gap-element-gap {
+  gap: var(--element-gap);
+}
+
+/* Hairline borders */
+.border-outline-variant {
+  border-color: var(--color-outline-variant) !important;
+}
+
+.border-outline {
+  border-color: var(--color-outline) !important;
+}
+
+/* Rounded corners per Stitch spec (0.25rem soft) */
+.rounded-DEFAULT {
+  border-radius: var(--radius-md);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
 }
