@@ -2,6 +2,70 @@ import { Project, ExperienceItem, NoteItem, AwardItem, SkillCategoryMap, Guestbo
 
 export const projectsData: Project[] = [
   {
+    id: 8,
+    title: "Amunisi PTN 2026",
+    category: "be",
+    role: "Backend Developer",
+    period: "2026",
+    description:
+      "Backend developer for Amunisi PTN, a comprehensive university entrance tryout platform built with Laravel.",
+    fullDetails:
+      "Engineered scalable REST APIs and relational database schemas for Amunisi PTN, an online tryout platform helping students prepare for national university entrance exams (SNBT/UTBK 2026).",
+    tags: ["Laravel", "PHP", "MySQL", "REST API"],
+    image:
+      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop&q=80",
+    link: "https://github.com",
+    metrics: ["Laravel REST API", "Tryout Platform Backend", "UTBK Exam Engine"],
+  },
+  {
+    id: 5,
+    title: "KKI 2025",
+    category: "ai",
+    role: "Computer Vision Engineer",
+    period: "2025",
+    description:
+      "Computer Vision algorithm development for Indonesian Ship Contest (KKI) 2025.",
+    fullDetails:
+      "Computer Vision algorithm development for Indonesian Ship Contest (KKI) 2025. Engineered real-time object detection and buoy tracking algorithms in Python/OpenCV/YOLO, securing 1st Place (Fun Race) and 2nd Runner-Up (ASV).",
+    tags: ["Python", "OpenCV", "YOLO", "Edge / Robotics"],
+    image:
+      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=500&fit=crop&q=80",
+    link: "https://github.com",
+    metrics: ["1st Place Fun Race", "2nd Runner-Up ASV", "Real-Time OpenCV & YOLO"],
+  },
+  {
+    id: 6,
+    title: "Capstone Project Drone",
+    category: "ai",
+    role: "AI & Hardware Engineer",
+    period: "2024–2025",
+    description:
+      "Custom YOLOv8 for real-time drone-based fire & smoke detection on Raspberry Pi 5 with Hailo-8L.",
+    fullDetails:
+      "Custom YOLOv8 model for real-time drone-based fire & smoke detection. Exported to ONNX runtime format to run on Raspberry Pi 5 equipped with Hailo-8L M.2 AI accelerator for sub-200ms offline detection.",
+    tags: ["YOLOv8", "Python", "Raspberry Pi 5", "Hailo-8L", "ONNX"],
+    image:
+      "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&h=500&fit=crop&q=80",
+    link: "https://github.com",
+    metrics: ["< 200ms Frame Latency", "Hailo-8L NPU Acceleration", "100% Offline Edge AI"],
+  },
+  {
+    id: 4,
+    title: "Ship Monitoring",
+    category: "fullstack",
+    role: "Software Engineer",
+    period: "2024–2025",
+    description:
+      "Real-time ship monitoring for autonomous applications: speed, direction, angle, and mission status.",
+    fullDetails:
+      "Real-time ship monitoring telemetry dashboard for autonomous vessels: streaming speed, heading direction, pitch/roll angle, GPS route pathing, and mission waypoints.",
+    tags: ["React", "Leaflet", "Firebase RTDB", "WebSocket"],
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&q=80",
+    link: "https://github.com",
+    metrics: ["< 100ms Telemetry Stream", "Leaflet GIS Map", "Autonomous Vessel Status"],
+  },
+  {
     id: 1,
     title: "Dopamind+",
     category: "ai",
@@ -50,54 +114,6 @@ export const projectsData: Project[] = [
     metrics: ["Official UNDIP Platform", "Streamlined Sign-ups", "Firebase Auth & RTDB"],
   },
   {
-    id: 4,
-    title: "Ship Monitoring",
-    category: "fullstack",
-    role: "Software Engineer",
-    period: "2024–2025",
-    description:
-      "Real-time ship monitoring for autonomous applications: speed, direction, angle, and mission status.",
-    fullDetails:
-      "Real-time ship monitoring telemetry dashboard for autonomous vessels: streaming speed, heading direction, pitch/roll angle, GPS route pathing, and mission waypoints.",
-    tags: ["React", "Leaflet", "Firebase RTDB", "WebSocket"],
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=500&fit=crop&q=80",
-    link: "https://github.com",
-    metrics: ["< 100ms Telemetry Stream", "Leaflet GIS Map", "Autonomous Vessel Status"],
-  },
-  {
-    id: 5,
-    title: "KKI 2025",
-    category: "ai",
-    role: "Computer Vision Engineer",
-    period: "2025",
-    description:
-      "Computer Vision algorithm development for Indonesian Ship Contest (KKI) 2025.",
-    fullDetails:
-      "Computer Vision algorithm development for Indonesian Ship Contest (KKI) 2025. Engineered real-time object detection and buoy tracking algorithms in Python/OpenCV/YOLO, securing 1st Place (Fun Race) and 2nd Runner-Up (ASV).",
-    tags: ["Python", "OpenCV", "YOLO", "Edge / Robotics"],
-    image:
-      "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&h=500&fit=crop&q=80",
-    link: "https://github.com",
-    metrics: ["1st Place Fun Race", "2nd Runner-Up ASV", "Real-Time OpenCV & YOLO"],
-  },
-  {
-    id: 6,
-    title: "Capstone Project Drone",
-    category: "ai",
-    role: "AI & Hardware Engineer",
-    period: "2024–2025",
-    description:
-      "Custom YOLOv8 for real-time drone-based fire & smoke detection on Raspberry Pi 5 with Hailo-8L.",
-    fullDetails:
-      "Custom YOLOv8 model for real-time drone-based fire & smoke detection. Exported to ONNX runtime format to run on Raspberry Pi 5 equipped with Hailo-8L M.2 AI accelerator for sub-200ms offline detection.",
-    tags: ["YOLOv8", "Python", "Raspberry Pi 5", "Hailo-8L", "ONNX"],
-    image:
-      "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=800&h=500&fit=crop&q=80",
-    link: "https://github.com",
-    metrics: ["< 200ms Frame Latency", "Hailo-8L NPU Acceleration", "100% Offline Edge AI"],
-  },
-  {
     id: 7,
     title: "Backend E-commerce with Golang",
     category: "be",
@@ -112,22 +128,6 @@ export const projectsData: Project[] = [
       "https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=800&h=500&fit=crop&q=80",
     link: "https://github.com",
     metrics: ["High Concurrency Go", "Gin & GORM Stack", "JWT Authorization"],
-  },
-  {
-    id: 8,
-    title: "Amunisi PTN",
-    category: "be",
-    role: "Backend Developer",
-    period: "2024",
-    description:
-      "Backend developer for Amunisi PTN, a comprehensive university entrance tryout platform built with Laravel.",
-    fullDetails:
-      "Engineered scalable REST APIs and relational database schemas for Amunisi PTN, an online tryout platform helping students prepare for national university entrance exams (SNBT/UTBK).",
-    tags: ["Laravel", "PHP", "MySQL", "REST API"],
-    image:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800&h=500&fit=crop&q=80",
-    link: "https://github.com",
-    metrics: ["Laravel REST API", "Tryout Platform Backend", "UTBK Exam Engine"],
   },
 ];
 

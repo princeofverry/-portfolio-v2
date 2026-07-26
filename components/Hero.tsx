@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 interface HeroProps {
   onCopyEmail: () => void;
@@ -71,7 +72,9 @@ export default function Hero({ onCopyEmail }: HeroProps) {
 
         {/* Social Action Links */}
         <div className="flex flex-wrap gap-6 pt-4">
-          <a
+          <motion.a
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.96 }}
             href="https://linkedin.com/in/verry-kurniawan"
             target="_blank"
             rel="noopener noreferrer"
@@ -81,8 +84,10 @@ export default function Hero({ onCopyEmail }: HeroProps) {
             <span className="material-symbols-outlined text-[14px] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
               arrow_outward
             </span>
-          </a>
-          <a
+          </motion.a>
+          <motion.a
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.96 }}
             href="https://github.com/princeofverry"
             target="_blank"
             rel="noopener noreferrer"
@@ -92,8 +97,10 @@ export default function Hero({ onCopyEmail }: HeroProps) {
             <span className="material-symbols-outlined text-[14px] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
               arrow_outward
             </span>
-          </a>
-          <button
+          </motion.a>
+          <motion.button
+            whileHover={{ y: -2 }}
+            whileTap={{ scale: 0.96 }}
             onClick={onCopyEmail}
             className="group inline-flex items-center gap-1 font-label-mono text-primary border-b border-primary pb-0.5 hover:text-secondary hover:border-secondary transition-colors cursor-pointer"
           >
@@ -101,7 +108,7 @@ export default function Hero({ onCopyEmail }: HeroProps) {
             <span className="material-symbols-outlined text-[14px] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
               content_copy
             </span>
-          </button>
+          </motion.button>
         </div>
       </div>
     </section>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
 import { Project } from "@/types/portfolio";
 import { projectsData, experiencesData, notesData, awardsData } from "@/data/portfolioData";
 
@@ -14,6 +15,15 @@ import NotesSection from "@/components/NotesSection";
 import ProjectModal from "@/components/ProjectModal";
 import Footer from "@/components/Footer";
 import ToastNotification from "@/components/ToastNotification";
+
+const sectionVariants: Variants = {
+  hidden: { opacity: 0, y: 25 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] },
+  },
+};
 
 export default function Portfolio() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -42,40 +52,70 @@ export default function Portfolio() {
       {/* Main Container */}
       <main className="max-w-container-max mx-auto px-gutter flex-1 w-full">
         {/* Hero Section */}
-        <div className="animate-slide-up">
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={sectionVariants}
+        >
           <Hero onCopyEmail={copyEmail} />
-        </div>
+        </motion.div>
 
         <hr className="border-t border-outline-variant w-full" />
 
         {/* 01: Experience Section */}
-        <div className="animate-slide-up delay-1">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={sectionVariants}
+        >
           <ExperienceSection experiences={experiencesData} />
-        </div>
+        </motion.div>
 
         <hr className="border-t border-outline-variant w-full" />
 
         {/* 02: Selected Works Section */}
-        <div className="animate-slide-up delay-2">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={sectionVariants}
+        >
           <WorksSection projects={projectsData} onSelectProject={setSelectedProject} />
-        </div>
+        </motion.div>
 
         <hr className="border-t border-outline-variant w-full" />
 
         {/* 03: Awards & Recognition Section */}
-        <div className="animate-slide-up delay-3">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={sectionVariants}
+        >
           <AwardsSection awards={awardsData} />
-        </div>
+        </motion.div>
 
         <hr className="border-t border-outline-variant w-full" />
 
         {/* 04: Latest Notes Section */}
-        <div className="animate-slide-up delay-4">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={sectionVariants}
+        >
           <NotesSection notes={notesData} />
-        </div>
+        </motion.div>
 
         {/* 05: Developer Guestbook Teaser Banner */}
-        <div className="animate-slide-up delay-4 py-20 border-t border-outline-variant">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-60px" }}
+          variants={sectionVariants}
+          className="py-20 border-t border-outline-variant"
+        >
           <div className="border border-outline-variant rounded-DEFAULT p-8 md:p-12 bg-surface flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
             <div className="space-y-2">
               <span className="font-label-mono text-secondary text-xs block">
@@ -88,15 +128,17 @@ export default function Portfolio() {
                 Want to leave a note, reaction, or hello? Sign the public signature wall on our dedicated Guestbook page!
               </p>
             </div>
-            <Link
-              href="/guestbook"
-              className="px-6 py-3.5 bg-primary text-on-primary font-label-mono text-xs rounded-DEFAULT hover:opacity-90 transition-opacity inline-flex items-center gap-2 font-bold uppercase shrink-0"
-            >
-              <span>EXPLORE & SIGN GUESTBOOK</span>
-              <span className="material-symbols-outlined text-base">arrow_forward</span>
-            </Link>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="shrink-0">
+              <Link
+                href="/guestbook"
+                className="px-6 py-3.5 bg-primary text-on-primary font-label-mono text-xs rounded-DEFAULT hover:opacity-90 transition-opacity inline-flex items-center gap-2 font-bold uppercase"
+              >
+                <span>EXPLORE & SIGN GUESTBOOK</span>
+                <span className="material-symbols-outlined text-base">arrow_forward</span>
+              </Link>
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
       </main>
 
       {/* Project Details Modal */}

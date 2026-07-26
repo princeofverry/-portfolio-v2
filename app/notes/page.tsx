@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { notesData } from "@/data/portfolioData";
@@ -67,72 +68,93 @@ export default function NotesPage() {
             />
           </div>
 
-          {/* Filter Chips */}
+          {/* Filter Chips with sliding layoutId */}
           <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <button
-                key={tag}
-                onClick={() => setSelectedTag(tag)}
-                className={`font-label-mono text-xs px-3 py-1.5 rounded-DEFAULT border transition-colors cursor-pointer ${
-                  selectedTag === tag
-                    ? "border-primary bg-primary text-on-primary"
-                    : "border-outline-variant text-secondary hover:text-primary hover:border-outline"
-                }`}
-              >
-                {tag}
-              </button>
-            ))}
+            {tags.map((tag) => {
+              const isActive = selectedTag === tag;
+              return (
+                <button
+                  key={tag}
+                  onClick={() => setSelectedTag(tag)}
+                  className={`relative font-label-mono text-xs px-3 py-1.5 rounded-DEFAULT transition-colors cursor-pointer border ${
+                    isActive
+                      ? "border-primary text-on-primary font-bold"
+                      : "border-outline-variant text-secondary hover:text-primary hover:border-outline"
+                  }`}
+                >
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeNotesTagIndicator"
+                      className="absolute inset-0 bg-primary rounded-DEFAULT -z-10"
+                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                    />
+                  )}
+                  <span className="relative z-10">{tag}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* Notes Grid */}
+        {/* Notes Grid with motion layout */}
         {filteredNotes.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {filteredNotes.map((note, idx) => (
-              <Link
-                key={idx}
-                href={`/notes/${note.slug}`}
-                className="group border border-outline-variant p-6 rounded-DEFAULT bg-surface hover:bg-surface-container-lowest transition-all cursor-pointer flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between font-label-mono text-xs text-secondary mb-3">
-                    <time>{note.date}</time>
-                    <span className="flex items-center gap-1">
-                      <span className="material-symbols-outlined text-sm">schedule</span>
-                      {note.readTime}
-                    </span>
-                  </div>
+          <motion.div layout className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <AnimatePresence mode="popLayout">
+              {filteredNotes.map((note) => (
+                <motion.div
+                  layout
+                  initial={{ opacity: 0, scale: 0.96 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                  whileHover={{ y: -4 }}
+                  key={note.slug}
+                >
+                  <Link
+                    href={`/notes/${note.slug}`}
+                    className="group border border-outline-variant p-6 rounded-DEFAULT bg-surface hover:bg-surface-container-lowest transition-all cursor-pointer flex flex-col justify-between h-full"
+                  >
+                    <div>
+                      <div className="flex items-center justify-between font-label-mono text-xs text-secondary mb-3">
+                        <time>{note.date}</time>
+                        <span className="flex items-center gap-1">
+                          <span className="material-symbols-outlined text-sm">schedule</span>
+                          {note.readTime}
+                        </span>
+                      </div>
 
-                  <h2 className="font-headline-mobile text-lg text-primary mb-3 group-hover:underline decoration-1 underline-offset-4 leading-snug">
-                    {note.title}
-                  </h2>
+                      <h2 className="font-headline-mobile text-lg text-primary mb-3 group-hover:underline decoration-1 underline-offset-4 leading-snug">
+                        {note.title}
+                      </h2>
 
-                  <p className="font-body text-sm text-on-surface-variant leading-relaxed mb-6">
-                    {note.excerpt}
-                  </p>
-                </div>
+                      <p className="font-body text-sm text-on-surface-variant leading-relaxed mb-6">
+                        {note.excerpt}
+                      </p>
+                    </div>
 
-                <div className="space-y-4 pt-4 border-t border-outline-variant/50">
-                  <div className="flex flex-wrap gap-2">
-                    {note.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="border border-outline-variant px-2 py-0.5 rounded-DEFAULT font-label-mono text-[10px] text-secondary"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                    <div className="space-y-4 pt-4 border-t border-outline-variant/50">
+                      <div className="flex flex-wrap gap-2">
+                        {note.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="border border-outline-variant px-2 py-0.5 rounded-DEFAULT font-label-mono text-[10px] text-secondary"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
 
-                  <div className="flex items-center justify-between pt-1">
-                    <span className="font-label-mono text-xs text-primary flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                      READ FULL ESSAY <span className="material-symbols-outlined text-sm">arrow_forward</span>
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                      <div className="flex items-center justify-between pt-1">
+                        <span className="font-label-mono text-xs text-primary flex items-center gap-1 group-hover:translate-x-1 transition-transform">
+                          READ FULL ESSAY <span className="material-symbols-outlined text-sm">arrow_forward</span>
+                        </span>
+                      </div>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </AnimatePresence>
+          </motion.div>
         ) : (
           <div className="text-center py-20 border border-outline-variant rounded-DEFAULT bg-surface-container-low">
             <span className="material-symbols-outlined text-3xl text-secondary mb-2">
