@@ -3,14 +3,27 @@ import { redis } from "@/lib/redis";
 import { guestbookData } from "@/data/portfolioData";
 import { GuestbookEntry } from "@/types/portfolio";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 const GUESTBOOK_REDIS_KEY = "verry_guestbook_entries";
 
 export async function GET() {
   try {
     if (redis) {
-      const entries = await redis.lrange<GuestbookEntry>(GUESTBOOK_REDIS_KEY, 0, -1);
-      if (entries && entries.length > 0) {
-        return NextResponse.json(entries);
+      const rawEntries = await redis.lrange(GUESTBOOK_REDIS_KEY, 0, -1);
+      if (rawEntries && rawEntries.length > 0) {
+        const parsedEntries: GuestbookEntry[] = rawEntries.map((item: any) => {
+          if (typeof item === "string") {
+            try {
+              return JSON.parse(item);
+            } catch {
+              return item;
+            }
+          }
+          return item;
+        });
+        return NextResponse.json(parsedEntries);
       }
     }
     return NextResponse.json(guestbookData);
@@ -46,8 +59,8 @@ export async function POST(request: Request) {
     };
 
     if (redis) {
-      // Push new entry to the left (beginning) of the list
-      await redis.lpush(GUESTBOOK_REDIS_KEY, newEntry);
+      // Store stringified JSON entry in Redis list
+      await redis.lpush(GUESTBOOK_REDIS_KEY, JSON.stringify(newEntry));
     }
 
     return NextResponse.json(newEntry, { status: 201 });

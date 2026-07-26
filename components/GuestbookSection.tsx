@@ -17,33 +17,48 @@ export default function GuestbookSection({
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Fetch live signatures from API (Upstash Redis) on mount
+  // Fetch live signatures from API (Upstash Redis) and merge with localStorage on mount
   useEffect(() => {
     async function loadGuestbook() {
+      let serverData: GuestbookEntry[] = [];
       try {
         const res = await fetch("/api/guestbook");
         if (res.ok) {
           const data = await res.json();
-          if (Array.isArray(data) && data.length > 0) {
-            setEntries(data);
-            localStorage.setItem("verry_guestbook_entries", JSON.stringify(data));
-            return;
+          if (Array.isArray(data)) {
+            serverData = data;
           }
         }
       } catch {
-        // Fallback to localStorage
+        // Ignore API fetch error
       }
 
+      let localData: GuestbookEntry[] = [];
       try {
         const saved = localStorage.getItem("verry_guestbook_entries");
         if (saved) {
           const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) {
-            setEntries(parsed);
+          if (Array.isArray(parsed)) {
+            localData = parsed;
           }
         }
       } catch {
-        // Fallback to initial
+        // Ignore localStorage error
+      }
+
+      // Merge local and server entries by id (local user submissions take priority)
+      const mergedMap = new Map<string, GuestbookEntry>();
+      localData.forEach((item) => mergedMap.set(item.id, item));
+      serverData.forEach((item) => {
+        if (!mergedMap.has(item.id)) {
+          mergedMap.set(item.id, item);
+        }
+      });
+
+      const finalEntries = Array.from(mergedMap.values());
+      if (finalEntries.length > 0) {
+        setEntries(finalEntries);
+        localStorage.setItem("verry_guestbook_entries", JSON.stringify(finalEntries));
       }
     }
 
@@ -65,34 +80,31 @@ export default function GuestbookSection({
       .format(now)
       .toUpperCase();
 
-    const fallbackEntry: GuestbookEntry = {
+    const newEntry: GuestbookEntry = {
       id: `gb-${Date.now()}`,
       name: name.trim(),
       message: message.trim(),
       date: formattedDate,
     };
 
+    // Immediately update local state & localStorage
+    const updated = [newEntry, ...entries];
+    setEntries(updated);
     try {
-      const res = await fetch("/api/guestbook", {
+      localStorage.setItem("verry_guestbook_entries", JSON.stringify(updated));
+    } catch {
+      // Ignore
+    }
+
+    // Try posting to API / Upstash Redis
+    try {
+      await fetch("/api/guestbook", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name: name.trim(), message: message.trim() }),
       });
-
-      if (res.ok) {
-        const savedEntry: GuestbookEntry = await res.json();
-        const updated = [savedEntry, ...entries];
-        setEntries(updated);
-        localStorage.setItem("verry_guestbook_entries", JSON.stringify(updated));
-      } else {
-        const updated = [fallbackEntry, ...entries];
-        setEntries(updated);
-        localStorage.setItem("verry_guestbook_entries", JSON.stringify(updated));
-      }
     } catch {
-      const updated = [fallbackEntry, ...entries];
-      setEntries(updated);
-      localStorage.setItem("verry_guestbook_entries", JSON.stringify(updated));
+      // Ignore API post error (already saved to local state and localStorage)
     } finally {
       setIsSubmitting(false);
       setName("");
