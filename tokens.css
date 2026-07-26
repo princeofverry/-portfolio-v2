@@ -23,6 +23,7 @@
   --color-secondary: #5e5e5e;
   --color-background: #f9f9f9;
   --color-on-background: #1b1b1b;
+  --color-grid-line: rgba(0, 0, 0, 0.035);
 
   /* Legacy & Token Compatibility */
   --color-paper: var(--color-surface);
@@ -83,6 +84,7 @@
   --color-secondary: #a0a0a0;
   --color-background: #0f0f0f;
   --color-on-background: #f1f1f1;
+  --color-grid-line: rgba(255, 255, 255, 0.05);
 
   --color-paper: var(--color-surface);
   --color-paper-2: var(--color-surface-container-low);
@@ -116,6 +118,7 @@
     --color-secondary: #a0a0a0;
     --color-background: #0f0f0f;
     --color-on-background: #f1f1f1;
+    --color-grid-line: rgba(255, 255, 255, 0.05);
 
     --color-paper: var(--color-surface);
     --color-paper-2: var(--color-surface-container-low);

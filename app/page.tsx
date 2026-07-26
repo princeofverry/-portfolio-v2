@@ -2,14 +2,13 @@
 
 import { useState, useEffect } from "react";
 import { Project } from "@/types/portfolio";
-import { projectsData, experiencesData, skillsData, notesData, awardsData } from "@/data/portfolioData";
+import { projectsData, experiencesData, notesData, awardsData } from "@/data/portfolioData";
 
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import ExperienceSection from "@/components/ExperienceSection";
 import WorksSection from "@/components/WorksSection";
 import AwardsSection from "@/components/AwardsSection";
-import SkillsSection from "@/components/SkillsSection";
 import NotesSection from "@/components/NotesSection";
 import ProjectModal from "@/components/ProjectModal";
 import Footer from "@/components/Footer";
@@ -42,32 +41,37 @@ export default function Portfolio() {
       {/* Main Container */}
       <main className="max-w-container-max mx-auto px-gutter flex-1 w-full">
         {/* Hero Section */}
-        <Hero onCopyEmail={copyEmail} />
+        <div className="animate-slide-up">
+          <Hero onCopyEmail={copyEmail} />
+        </div>
 
         <hr className="border-t border-outline-variant w-full" />
 
         {/* 01: Experience Section */}
-        <ExperienceSection experiences={experiencesData} />
+        <div className="animate-slide-up delay-1">
+          <ExperienceSection experiences={experiencesData} />
+        </div>
 
         <hr className="border-t border-outline-variant w-full" />
 
         {/* 02: Selected Works Section */}
-        <WorksSection projects={projectsData} onSelectProject={setSelectedProject} />
+        <div className="animate-slide-up delay-2">
+          <WorksSection projects={projectsData} onSelectProject={setSelectedProject} />
+        </div>
 
         <hr className="border-t border-outline-variant w-full" />
 
         {/* 03: Awards & Recognition Section */}
-        <AwardsSection awards={awardsData} />
+        <div className="animate-slide-up delay-3">
+          <AwardsSection awards={awardsData} />
+        </div>
 
         <hr className="border-t border-outline-variant w-full" />
 
-        {/* 04: Skills & Tech Stack Section */}
-        <SkillsSection skills={skillsData} />
-
-        <hr className="border-t border-outline-variant w-full" />
-
-        {/* 05: Latest Notes Section */}
-        <NotesSection notes={notesData} />
+        {/* 04: Latest Notes Section */}
+        <div className="animate-slide-up delay-4">
+          <NotesSection notes={notesData} />
+        </div>
       </main>
 
       {/* Project Details Modal */}

@@ -42,7 +42,7 @@ export default function ExperienceSection({
             <ul className="space-y-2.5 font-body text-sm text-on-surface-variant pt-1">
               {exp.bulletPoints.map((point, pIdx) => (
                 <li key={pIdx} className="flex items-start gap-2.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-secondary mt-2 shrink-0"></span>
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
                   <span className="leading-relaxed">{point}</span>
                 </li>
               ))}

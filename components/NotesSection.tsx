@@ -11,7 +11,7 @@ export default function NotesSection({ notes }: NotesSectionProps) {
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end mb-12 gap-4">
         <div>
           <span className="font-label-mono text-secondary text-xs block mb-1">
-            ESSAYS // 05
+            ESSAYS // 04
           </span>
           <h2 className="font-headline-lg text-primary">Latest Notes</h2>
         </div>

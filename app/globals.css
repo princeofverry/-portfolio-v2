@@ -15,12 +15,60 @@
     background-color: var(--color-surface);
     color: var(--color-on-surface);
     font-family: var(--font-body);
+    position: relative;
+  }
+
+  /* Architectural Grid Line Overlay Background */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background-image: 
+      linear-gradient(to right, var(--color-grid-line) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--color-grid-line) 1px, transparent 1px);
+    background-size: 96px 96px;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 90%);
+    -webkit-mask-image: radial-gradient(circle at center, black 30%, transparent 90%);
   }
 
   ::selection {
     background-color: var(--color-on-surface);
     color: var(--color-surface);
   }
+}
+
+/* Keyframe Animations for Initial Page Entrance */
+@keyframes slideUpFade {
+  0% {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.delay-1 {
+  animation-delay: 150ms;
+}
+
+.delay-2 {
+  animation-delay: 300ms;
+}
+
+.delay-3 {
+  animation-delay: 450ms;
+}
+
+.delay-4 {
+  animation-delay: 600ms;
 }
 
 /* Color Tokens Utilities */
@@ -49,11 +97,11 @@
 }
 
 .text-primary {
-  color: var(--color-primary) !important;
+  color: var(--color-primary);
 }
 
 .text-secondary {
-  color: var(--color-secondary) !important;
+  color: var(--color-secondary);
 }
 
 .text-on-primary {

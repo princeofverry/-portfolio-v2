@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface HeroProps {
   onCopyEmail: () => void;
@@ -13,21 +13,21 @@ export default function Hero({ onCopyEmail }: HeroProps) {
   useEffect(() => {
     const updateTime = () => {
       const now = new Date();
-      const shortFormatted = now.toLocaleTimeString("en-US", {
+      const optionsShort: Intl.DateTimeFormatOptions = {
         timeZone: "Asia/Jakarta",
         hour: "2-digit",
         minute: "2-digit",
         hour12: true,
-      });
-      const fullFormatted = now.toLocaleTimeString("en-US", {
+      };
+      const optionsFull: Intl.DateTimeFormatOptions = {
         timeZone: "Asia/Jakarta",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         hour12: true,
-      });
-      setCurrentTimeShort(shortFormatted);
-      setCurrentTimeFull(fullFormatted);
+      };
+      setCurrentTimeShort(new Intl.DateTimeFormat("en-US", optionsShort).format(now));
+      setCurrentTimeFull(new Intl.DateTimeFormat("en-US", optionsFull).format(now));
     };
 
     updateTime();
@@ -36,7 +36,7 @@ export default function Hero({ onCopyEmail }: HeroProps) {
   }, []);
 
   return (
-    <section className="pt-20 pb-24 md:pt-32 md:pb-28">
+    <section className="pt-24 pb-16 md:pt-36 md:pb-24 border-b border-outline-variant">
       <div className="space-y-6">
         <div className="space-y-2">
           <span className="font-label-mono text-secondary flex items-center gap-2 text-xs">
@@ -83,7 +83,7 @@ export default function Hero({ onCopyEmail }: HeroProps) {
             </span>
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/princeofverry"
             target="_blank"
             rel="noopener noreferrer"
             className="group inline-flex items-center gap-1 font-label-mono text-primary border-b border-primary pb-0.5 hover:text-secondary hover:border-secondary transition-colors"
@@ -97,7 +97,7 @@ export default function Hero({ onCopyEmail }: HeroProps) {
             onClick={onCopyEmail}
             className="group inline-flex items-center gap-1 font-label-mono text-primary border-b border-primary pb-0.5 hover:text-secondary hover:border-secondary transition-colors cursor-pointer"
           >
-            EMAIL (VEXYKRWN@GMAIL.COM){" "}
+            EMAIL{" "}
             <span className="material-symbols-outlined text-[14px] transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
               content_copy
             </span>
