@@ -1,4 +1,4 @@
-import { Project, ExperienceItem, NoteItem, AwardItem, SkillCategoryMap } from "@/types/portfolio";
+import { Project, ExperienceItem, NoteItem, AwardItem, SkillCategoryMap, GuestbookEntry } from "@/types/portfolio";
 
 export const projectsData: Project[] = [
   {
@@ -384,23 +384,4 @@ Architecting client-side canvas renderers with requestAnimationFrame ensures smo
   },
 ];
 
-export const guestbookData = [
-  {
-    id: "gb-1",
-    name: "Alex Rivera",
-    message: "Insanely clean portfolio design! Loving the minimal editorial typography and high-density project metrics. Keep crushing it, Verry!",
-    date: "JULY 25, 2026",
-  },
-  {
-    id: "gb-2",
-    name: "Sarah Chen",
-    message: "Great work on the KKI 2025 Autonomous Boat vision algorithms! Your drone fire detection project with Hailo-8L NPU is super impressive.",
-    date: "JULY 22, 2026",
-  },
-  {
-    id: "gb-3",
-    name: "Devon Vance",
-    message: "Solid Java Spring Boot & Golang backend projects. The Virtual Threads article was a fantastic read!",
-    date: "JULY 18, 2026",
-  },
-];
+export const guestbookData: GuestbookEntry[] = [];

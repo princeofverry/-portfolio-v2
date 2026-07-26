@@ -16,10 +16,12 @@ export default function GuestbookSection({
   const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch live signatures from API (Upstash Redis) and merge with localStorage on mount
   useEffect(() => {
     async function loadGuestbook() {
+      setIsLoading(true);
       let serverData: GuestbookEntry[] = [];
       try {
         const res = await fetch("/api/guestbook");
@@ -39,7 +41,11 @@ export default function GuestbookSection({
         if (saved) {
           const parsed = JSON.parse(saved);
           if (Array.isArray(parsed)) {
-            localData = parsed;
+            // Filter out old dummy entries if any exist
+            localData = parsed.filter(
+              (item: GuestbookEntry) =>
+                item.id !== "gb-1" && item.id !== "gb-2" && item.id !== "gb-3"
+            );
           }
         }
       } catch {
@@ -50,16 +56,20 @@ export default function GuestbookSection({
       const mergedMap = new Map<string, GuestbookEntry>();
       localData.forEach((item) => mergedMap.set(item.id, item));
       serverData.forEach((item) => {
-        if (!mergedMap.has(item.id)) {
+        if (
+          item.id !== "gb-1" &&
+          item.id !== "gb-2" &&
+          item.id !== "gb-3" &&
+          !mergedMap.has(item.id)
+        ) {
           mergedMap.set(item.id, item);
         }
       });
 
       const finalEntries = Array.from(mergedMap.values());
-      if (finalEntries.length > 0) {
-        setEntries(finalEntries);
-        localStorage.setItem("verry_guestbook_entries", JSON.stringify(finalEntries));
-      }
+      setEntries(finalEntries);
+      localStorage.setItem("verry_guestbook_entries", JSON.stringify(finalEntries));
+      setIsLoading(false);
     }
 
     loadGuestbook();
@@ -182,26 +192,64 @@ export default function GuestbookSection({
 
         {/* Right Wall: Signatures List */}
         <div className="lg:col-span-2 space-y-4">
-          {entries.map((entry) => (
-            <article
-              key={entry.id}
-              className="border border-outline-variant rounded-DEFAULT p-6 bg-surface hover:bg-surface-container-lowest transition-colors space-y-3"
-            >
-              <div className="flex items-center justify-between font-label-mono text-xs text-secondary border-b border-outline-variant/40 pb-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-[10px]">
-                    {entry.name.substring(0, 2).toUpperCase()}
+          {isLoading ? (
+            /* Skeleton Loading State */
+            <div className="space-y-4">
+              {[1, 2, 3].map((n) => (
+                <div
+                  key={n}
+                  className="border border-outline-variant/60 rounded-DEFAULT p-6 bg-surface animate-pulse space-y-4"
+                >
+                  <div className="flex items-center justify-between border-b border-outline-variant/30 pb-2">
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-outline-variant/40" />
+                      <div className="w-28 h-3.5 bg-outline-variant/40 rounded-sm" />
+                    </div>
+                    <div className="w-20 h-3 bg-outline-variant/40 rounded-sm" />
                   </div>
-                  <span className="font-bold text-primary">{entry.name}</span>
+                  <div className="space-y-2">
+                    <div className="w-full h-3.5 bg-outline-variant/30 rounded-sm" />
+                    <div className="w-4/5 h-3.5 bg-outline-variant/30 rounded-sm" />
+                  </div>
                 </div>
-                <time>{entry.date}</time>
-              </div>
-
-              <p className="font-body text-sm text-on-surface-variant leading-relaxed">
-                "{entry.message}"
+              ))}
+            </div>
+          ) : entries.length === 0 ? (
+            /* Empty State */
+            <div className="border border-outline-variant rounded-DEFAULT p-12 bg-surface text-center space-y-3">
+              <span className="material-symbols-outlined text-4xl text-secondary">
+                edit_note
+              </span>
+              <h4 className="font-headline-mobile text-lg font-bold text-primary">
+                No Signatures Yet
+              </h4>
+              <p className="font-body text-sm text-secondary max-w-sm mx-auto">
+                Be the first developer to sign the public wall! Fill out the form on the left to leave your note.
               </p>
-            </article>
-          ))}
+            </div>
+          ) : (
+            /* Real Signatures List */
+            entries.map((entry) => (
+              <article
+                key={entry.id}
+                className="border border-outline-variant rounded-DEFAULT p-6 bg-surface hover:bg-surface-container-lowest transition-colors space-y-3"
+              >
+                <div className="flex items-center justify-between font-label-mono text-xs text-secondary border-b border-outline-variant/40 pb-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-bold text-[10px]">
+                      {entry.name.substring(0, 2).toUpperCase()}
+                    </div>
+                    <span className="font-bold text-primary">{entry.name}</span>
+                  </div>
+                  <time>{entry.date}</time>
+                </div>
+
+                <p className="font-body text-sm text-on-surface-variant leading-relaxed">
+                  "{entry.message}"
+                </p>
+              </article>
+            ))
+          )}
         </div>
       </div>
     </section>

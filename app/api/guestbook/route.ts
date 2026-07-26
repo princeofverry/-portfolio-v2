@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { redis } from "@/lib/redis";
-import { guestbookData } from "@/data/portfolioData";
 import { GuestbookEntry } from "@/types/portfolio";
 
 export const dynamic = "force-dynamic";
@@ -26,10 +25,10 @@ export async function GET() {
         return NextResponse.json(parsedEntries);
       }
     }
-    return NextResponse.json(guestbookData);
+    return NextResponse.json([]);
   } catch (error) {
     console.error("Error fetching guestbook entries:", error);
-    return NextResponse.json(guestbookData);
+    return NextResponse.json([]);
   }
 }
 
