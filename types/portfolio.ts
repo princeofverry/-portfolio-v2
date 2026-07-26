@@ -44,4 +44,12 @@ export interface AwardItem {
   badge?: string;
 }
 
+export interface GuestbookEntry {
+  id: string;
+  name: string;
+  message: string;
+  date: string;
+  avatar?: string;
+}
+
 export type SkillCategoryMap = Record<string, string[]>;

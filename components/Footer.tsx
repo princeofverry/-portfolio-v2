@@ -38,6 +38,12 @@ export default function Footer() {
           >
             NOTES
           </Link>
+          <Link
+            href="/guestbook"
+            className="hover:text-primary transition-colors py-1"
+          >
+            GUESTBOOK
+          </Link>
           <a
             href="#"
             className="hover:text-primary transition-colors inline-flex items-center gap-1 border border-outline-variant px-3 py-1 rounded-DEFAULT text-primary bg-surface-container-low"

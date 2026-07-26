@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import { Project } from "@/types/portfolio";
 import { projectsData, experiencesData, notesData, awardsData } from "@/data/portfolioData";
 
@@ -71,6 +72,30 @@ export default function Portfolio() {
         {/* 04: Latest Notes Section */}
         <div className="animate-slide-up delay-4">
           <NotesSection notes={notesData} />
+        </div>
+
+        {/* 05: Developer Guestbook Teaser Banner */}
+        <div className="animate-slide-up delay-4 py-20 border-t border-outline-variant">
+          <div className="border border-outline-variant rounded-DEFAULT p-8 md:p-12 bg-surface flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-2">
+              <span className="font-label-mono text-secondary text-xs block">
+                PUBLIC WALL // 05
+              </span>
+              <h2 className="font-headline-lg text-primary text-2xl md:text-3xl">
+                Developer Guestbook
+              </h2>
+              <p className="font-body text-sm text-on-surface-variant max-w-xl">
+                Want to leave a note, reaction, or hello? Sign the public signature wall on our dedicated Guestbook page!
+              </p>
+            </div>
+            <Link
+              href="/guestbook"
+              className="px-6 py-3.5 bg-primary text-on-primary font-label-mono text-xs rounded-DEFAULT hover:opacity-90 transition-opacity inline-flex items-center gap-2 font-bold uppercase shrink-0"
+            >
+              <span>EXPLORE & SIGN GUESTBOOK</span>
+              <span className="material-symbols-outlined text-base">arrow_forward</span>
+            </Link>
+          </div>
         </div>
       </main>
 

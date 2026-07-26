@@ -184,6 +184,12 @@ export default function Navbar({
               >
                 NOTES
               </Link>
+              <Link
+                href="/guestbook"
+                className="opacity-60 hover:opacity-100 hover:font-bold border-b-2 border-transparent hover:border-primary py-1 transition-all duration-150"
+              >
+                GUESTBOOK
+              </Link>
             </nav>
 
             {/* Thin vertical divider (Desktop) */}
@@ -339,6 +345,14 @@ export default function Navbar({
                 className="p-3 border border-outline-variant rounded-DEFAULT bg-surface hover:bg-surface-container flex items-center justify-between transition-colors"
               >
                 <span>NOTES</span>
+                <span className="material-symbols-outlined text-base">arrow_forward</span>
+              </Link>
+              <Link
+                href="/guestbook"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="p-3 border border-outline-variant rounded-DEFAULT bg-surface hover:bg-surface-container flex items-center justify-between transition-colors"
+              >
+                <span>GUESTBOOK</span>
                 <span className="material-symbols-outlined text-base">arrow_forward</span>
               </Link>
             </nav>
