@@ -9,14 +9,17 @@ export type ThemeMode = "light" | "dark" | "system";
 interface NavbarProps {
   themeMode?: ThemeMode;
   onChangeThemeMode?: (mode: ThemeMode) => void;
+  showReadingProgress?: boolean;
 }
 
 export default function Navbar({
   themeMode: externalThemeMode,
   onChangeThemeMode,
+  showReadingProgress = false,
 }: NavbarProps) {
   const [isNavVisible, setIsNavVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   // Local theme state
   const [currentMode, setCurrentMode] = useState<ThemeMode>(
@@ -84,7 +87,7 @@ export default function Navbar({
     return () => mediaQuery.removeEventListener("change", handleSystemChange);
   }, [currentMode]);
 
-  // Smart Hide-on-Scroll
+  // Smart Hide-on-Scroll & Reading Progress Calculation
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollPos = window.scrollY;
@@ -94,11 +97,22 @@ export default function Navbar({
         setIsNavVisible(prevScrollPos > currentScrollPos);
       }
       setPrevScrollPos(currentScrollPos);
+
+      // Scroll Progress %
+      if (showReadingProgress) {
+        const totalHeight =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        if (totalHeight > 0) {
+          const currentProgress = (currentScrollPos / totalHeight) * 100;
+          setScrollProgress(Math.min(100, Math.max(0, currentProgress)));
+        }
+      }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [prevScrollPos]);
+  }, [prevScrollPos, showReadingProgress]);
 
   // Get active icon
   const getThemeIcon = () => {
@@ -109,6 +123,16 @@ export default function Navbar({
 
   return (
     <>
+      {/* Fixed Top Reading Scroll Progress Bar (Only visible when showReadingProgress is true, e.g. /notes/[slug]) */}
+      {showReadingProgress && (
+        <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none">
+          <div
+            className="h-[3px] bg-primary transition-all duration-75 ease-out shadow-sm"
+            style={{ width: `${scrollProgress}%` }}
+          />
+        </div>
+      )}
+
       <header
         className={`sticky top-0 z-40 bg-surface/80 backdrop-blur-md border-b border-outline-variant transition-transform duration-300 ease-out ${
           isNavVisible ? "translate-y-0" : "-translate-y-full"
@@ -117,11 +141,11 @@ export default function Navbar({
         <div className="max-w-container-max mx-auto px-gutter flex items-center justify-between h-16">
           {/* Logo with Anya Image Emblem */}
           <Link
-            href="#"
+            href="/"
             className="inline-flex items-center gap-2.5 group cursor-pointer"
           >
             <Image
-              src="/anya.jfif"
+              src="/anya.jpg"
               width={28}
               height={28}
               alt="Logo"
@@ -197,11 +221,7 @@ export default function Navbar({
                     [
                       { mode: "light", label: "Light", icon: "light_mode" },
                       { mode: "dark", label: "Dark", icon: "dark_mode" },
-                      {
-                        mode: "system",
-                        label: "System",
-                        icon: "desktop_windows",
-                      },
+                      { mode: "system", label: "System", icon: "desktop_windows" },
                     ] as const
                   ).map((item) => {
                     const isSelected = currentMode === item.mode;
@@ -248,6 +268,7 @@ export default function Navbar({
               aria-label="Open Navigation & Theme Menu"
             >
               <span className="material-symbols-outlined text-lg">menu</span>
+              <span>MENU</span>
             </button>
           </div>
         </div>
@@ -281,9 +302,7 @@ export default function Navbar({
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="p-1 rounded-DEFAULT border border-outline-variant hover:bg-surface-container text-primary cursor-pointer"
                 >
-                  <span className="material-symbols-outlined text-xl">
-                    close
-                  </span>
+                  <span className="material-symbols-outlined text-xl">close</span>
                 </button>
               </div>
             </div>
@@ -296,9 +315,7 @@ export default function Navbar({
                 className="p-3 border border-outline-variant rounded-DEFAULT bg-surface hover:bg-surface-container flex items-center justify-between transition-colors"
               >
                 <span>EXPERIENCE</span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
+                <span className="material-symbols-outlined text-base">arrow_forward</span>
               </Link>
               <Link
                 href="/#works"
@@ -306,9 +323,7 @@ export default function Navbar({
                 className="p-3 border border-outline-variant rounded-DEFAULT bg-surface hover:bg-surface-container flex items-center justify-between transition-colors"
               >
                 <span>WORKS</span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
+                <span className="material-symbols-outlined text-base">arrow_forward</span>
               </Link>
               <Link
                 href="/#awards"
@@ -316,9 +331,7 @@ export default function Navbar({
                 className="p-3 border border-outline-variant rounded-DEFAULT bg-surface hover:bg-surface-container flex items-center justify-between transition-colors"
               >
                 <span>AWARDS</span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
+                <span className="material-symbols-outlined text-base">arrow_forward</span>
               </Link>
               <Link
                 href="/notes"
@@ -326,9 +339,7 @@ export default function Navbar({
                 className="p-3 border border-outline-variant rounded-DEFAULT bg-surface hover:bg-surface-container flex items-center justify-between transition-colors"
               >
                 <span>NOTES</span>
-                <span className="material-symbols-outlined text-base">
-                  arrow_forward
-                </span>
+                <span className="material-symbols-outlined text-base">arrow_forward</span>
               </Link>
             </nav>
 
@@ -342,11 +353,7 @@ export default function Navbar({
                   [
                     { mode: "light", label: "Light", icon: "light_mode" },
                     { mode: "dark", label: "Dark", icon: "dark_mode" },
-                    {
-                      mode: "system",
-                      label: "System",
-                      icon: "desktop_windows",
-                    },
+                    { mode: "system", label: "System", icon: "desktop_windows" },
                   ] as const
                 ).map((item) => {
                   const isSelected = currentMode === item.mode;

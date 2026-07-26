@@ -27,6 +27,7 @@ export interface NoteItem {
   excerpt: string;
   tags: string[];
   readTime: string;
+  coverImage?: string;
   content?: string;
   takeaways?: string[];
 }

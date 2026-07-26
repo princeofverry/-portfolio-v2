@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   description:
     "Software Engineer based in Jakarta, Indonesia. Enterprise Spring Boot backends, computer vision pipelines, and scalable software systems.",
   icons: {
-    icon: "/anya.jfif",
-    shortcut: "/anya.jfif",
-    apple: "/anya.jfif",
+    icon: "/anya.jpg",
+    shortcut: "/anya.jpg",
+    apple: "/anya.jpg",
   },
   openGraph: {
     title: "Verry Kurniawan — Software Engineer",
@@ -26,8 +26,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full antialiased scroll-smooth" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/anya.jfif" type="image/jfif" />
-        <link rel="shortcut icon" href="/anya.jfif" />
+        <link rel="icon" href="/anya.jpg" type="image/jpeg" />
+        <link rel="shortcut icon" href="/anya.jpg" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

@@ -264,6 +264,56 @@ export const skillsData: SkillCategoryMap = {
 
 export const notesData: NoteItem[] = [
   {
+    slug: "high-concurrency-spring-boot-virtual-threads",
+    date: "NOVEMBER 04, 2024",
+    title: "High-Concurrency Java Backends with Spring Boot 3 & Virtual Threads",
+    excerpt:
+      "A deep technical breakdown of harnessing Java 21 Virtual Threads (Project Loom), reactive database pooling, and asynchronous messaging pipelines for sub-10ms enterprise REST APIs.",
+    tags: ["Java", "Spring Boot", "Concurrency", "Architecture"],
+    readTime: "14 min read",
+    coverImage:
+      "https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=1200&h=600&fit=crop&q=80",
+    content: `
+For decades, Java enterprise backends relied on the classical OS thread-per-request model. Operating system threads are expensive resources, carrying stack allocations upwards of 1MB per thread and incurring heavy context-switching overhead when scaling beyond a few thousand concurrent connections.
+
+With the release of Java 21 and Project Loom, Virtual Threads introduce lightweight user-mode threads managed by the Java Virtual Machine (JVM) rather than the underlying operating system kernel. Millions of Virtual Threads can run concurrently on a handful of OS carrier threads, fundamentally shifting the paradigm for I/O-bound microservices and RESTful API gateways.
+
+### 1. Understanding Carrier Threads vs Virtual Threads
+
+Unlike traditional platform threads, Virtual Threads do not block the underlying OS thread during blocking I/O operations (such as SQL queries, HTTP client requests, or disk writes). When a Virtual Thread encounters a blocking call, the JVM unmounts the Virtual Thread from its OS carrier thread and parks it until the I/O operation completes.
+
+This allows carrier threads to execute work for other active Virtual Threads continuously. In Spring Boot 3.2+, enabling Virtual Threads is as simple as configuring \`spring.threads.virtual.enabled=true\`.
+
+### 2. Avoiding Carrier Thread Pinning
+
+While Virtual Threads dramatically increase throughput, developers must be vigilant about "Carrier Thread Pinning." Pinning occurs when a Virtual Thread cannot be unmounted during a blocking operation, holding onto its OS carrier thread and degrading system concurrency.
+
+The two main causes of pinning are:
+- Executing blocking I/O inside a \`synchronized\` block or method.
+- Invoking native methods (JNI) or foreign functions.
+
+To prevent pinning, legacy \`synchronized\` blocks in enterprise Java codebases should be migrated to modern \`java.util.concurrent.locks.ReentrantLock\` instances. ReentrantLocks allow the JVM to unmount the Virtual Thread cleanly without pinning carrier threads.
+
+### 3. Database Connection Pool & Reactive Integration
+
+A common misconception when adopting Virtual Threads is that database connection pools can be scaled infinitely. Even if the JVM can handle 100,000 Virtual Threads, relational databases like PostgreSQL or MySQL have finite connection limits and thread overhead on the database server itself.
+
+Sizing HikariCP connection pools correctly (e.g. 20–50 connections) paired with asynchronous Redis caching layer and reactive non-blocking drivers guarantees that database servers are not overwhelmed under sudden traffic surges.
+
+### 4. Enterprise Observability & JaCoCo Coverage Metrics
+
+Deploying high-concurrency Spring Boot applications to production environments requires robust telemetry. Combining Micrometer metrics with Prometheus, Grafana, and Zipkin distributed tracing provides real-time visibility into Virtual Thread park counts, carrier pool utilization, and garbage collection pauses.
+
+Furthermore, enforcing 90%+ branch code coverage via automated JUnit 5 tests and JaCoCo coverage reports in GitLab CI/CD pipelines ensures that race conditions and concurrency edge cases are caught long before deployment to production staging servers.
+    `,
+    takeaways: [
+      "Virtual Threads enable millions of concurrent I/O-bound requests on minimal JVM heap allocations.",
+      "Replace synchronized blocks with ReentrantLock to prevent carrier thread pinning.",
+      "Keep HikariCP database pool sizes modest and handle caching via Redis to protect underlying database instances.",
+      "Integrate JUnit 5 and JaCoCo coverage reporting into CI/CD to prevent concurrency regressions."
+    ]
+  },
+  {
     slug: "embracing-monolithic-designs-in-microservices-era",
     date: "OCTOBER 12, 2024",
     title: "Embracing Monolithic Designs in a Microservices Era",
@@ -271,6 +321,8 @@ export const notesData: NoteItem[] = [
       "Exploring the counter-intuitive performance benefits of scaling up monolithic architectures before prematurely breaking them into distributed microservices.",
     tags: ["Architecture", "Backend"],
     readTime: "5 min read",
+    coverImage:
+      "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&h=600&fit=crop&q=80",
     content: `
 In recent years, microservice architecture has become the default recommendation for scaling software applications. However, premature decomposition often introduces unnecessary network latency, complex distributed state management, and operational overhead that small to mid-sized engineering teams struggle to maintain.
 
@@ -292,6 +344,8 @@ Key strategies for sustainable monolith scaling include enforcing strict interna
       "How leveraging native CSS Grid can lead to more predictable, editorial-quality web layouts without relying on heavy framework dependencies.",
     tags: ["Design", "CSS"],
     readTime: "4 min read",
+    coverImage:
+      "https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?w=1200&h=600&fit=crop&q=80",
     content: `
 Modern web typography demands structural precision that traditional block-and-flexbox layouts often fail to deliver cleanly. By using native CSS Grid with named grid lines and explicit fractional units, developers can construct magazine-grade editorial layouts directly in vanilla CSS.
 
@@ -313,6 +367,8 @@ Pairing CSS Grid with fluid clamp() typography calculations yields predictable b
       "A practical guide to implementing real-time streaming telemetry and computer vision overlays without over-engineering server infrastructure.",
     tags: ["Performance", "Computer Vision"],
     readTime: "6 min read",
+    coverImage:
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?w=1200&h=600&fit=crop&q=80",
     content: `
 In autonomous vehicle navigation and low-latency computer vision pipelines, delivering telemetry to client dashboards requires careful protocol selection. While HTTP polling or Server-Sent Events (SSE) suffice for simple notification feeds, persistent full-duplex WebSocket connections are essential when streaming 60+ Hz sensor data streams.
 

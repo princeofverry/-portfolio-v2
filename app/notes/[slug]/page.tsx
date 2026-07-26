@@ -55,7 +55,7 @@ export default function NoteDetailPage() {
   return (
     <div className="min-h-screen flex flex-col transition-colors duration-300">
       <ToastNotification message={toastMessage} />
-      <Navbar />
+      <Navbar showReadingProgress={true} />
 
       <main className="max-w-container-max mx-auto px-gutter flex-1 w-full py-16 md:py-24">
         {/* Back Navigation */}
@@ -97,6 +97,17 @@ export default function NoteDetailPage() {
             </div>
           </div>
 
+          {/* Article Cover Image Banner */}
+          {note.coverImage && (
+            <div className="w-full h-72 md:h-96 rounded-DEFAULT overflow-hidden border border-outline-variant my-6 shadow-sm">
+              <img
+                src={note.coverImage}
+                alt={note.title}
+                className="w-full h-full object-cover"
+              />
+            </div>
+          )}
+
           {/* Excerpt Lead Quote */}
           <blockquote className="p-6 border-l-4 border-primary bg-surface-container-low font-serif text-lg md:text-xl text-primary italic leading-relaxed rounded-r-DEFAULT">
             "{note.excerpt}"
@@ -129,7 +140,7 @@ export default function NoteDetailPage() {
           {/* Author Badge */}
           <div className="p-4 border border-outline-variant rounded-DEFAULT bg-surface flex items-center gap-4">
             <img
-              src="/anya.jfif"
+              src="/anya.jpg"
               alt="Verry Kurniawan"
               className="w-12 h-12 rounded-md object-cover border border-outline-variant"
             />
