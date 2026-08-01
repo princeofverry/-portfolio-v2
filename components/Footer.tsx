@@ -51,6 +51,17 @@ export default function Footer() {
             DESIGN
           </Link>
           <a
+            href="https://up.verryk.my.id/status/live"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-0.5 hover:text-primary transition-colors py-1"
+          >
+            UPTIME{" "}
+            <span className="material-symbols-outlined text-[10px] scale-50 origin-left inline-block transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">
+              arrow_outward
+            </span>
+          </a>
+          <a
             href="#"
             className="hover:text-primary transition-colors inline-flex items-center gap-1 border border-outline-variant px-3 py-1 rounded-DEFAULT text-primary bg-surface-container-low"
           >
